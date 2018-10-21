@@ -1,0 +1,109 @@
+{
+    "vtns": {
+        "vtn": [
+            {
+                "name": "VTN_test",
+                "vtenant-config": {
+                    "hard-timeout": 0,
+                    "idle-timeout": 300
+                },
+                "vbridge": [
+                    {
+                        "name": "VirtBr1",
+                        "bridge-status": {
+                            "state": "DOWN",
+                            "path-faults": 0
+                        },
+                        "vbridge-config": {
+                            "age-interval": 600
+                        },
+                        "vinterface": [
+                            {
+                                "name": "int2",
+                                "vinterface-config": {
+                                    "enabled": true
+                                },
+                                "vinterface-status": {
+                                    "state": "DOWN",
+                                    "entity-state": "UNKNOWN"
+                                },
+                                "port-map-config": {
+                                    "node": "openflow:7",
+                                    "port-name": "s7-eth1",
+                                    "vlan-id": 0
+                                }
+                            },
+                            {
+                                "name": "int1",
+                                "vinterface-config": {
+                                    "enabled": true
+                                },
+                                "vinterface-status": {
+                                    "state": "DOWN",
+                                    "mapped-port": "openflow:3:1",
+                                    "entity-state": "UP"
+                                },
+                                "port-map-config": {
+                                    "node": "openflow:3",
+                                    "port-name": "s3-eth1",
+                                    "vlan-id": 0
+                                }
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "name": "VTN_multi_vlan",
+                "vtenant-config": {
+                    "hard-timeout": 0,
+                    "idle-timeout": 300
+                },
+                "vbridge": [
+                    {
+                        "name": "VirtBr1",
+                        "bridge-status": {
+                            "state": "UP",
+                            "path-faults": 0
+                        },
+                        "vbridge-config": {
+                            "age-interval": 600
+                        },
+                        "vlan-map": [
+                            {
+                                "map-id": "ANY.200",
+                                "vlan-map-status": {
+                                    "active": true
+                                },
+                                "vlan-map-config": {
+                                    "vlan-id": 200
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "name": "VirtBr2",
+                        "bridge-status": {
+                            "state": "UP",
+                            "path-faults": 0
+                        },
+                        "vbridge-config": {
+                            "age-interval": 600
+                        },
+                        "vlan-map": [
+                            {
+                                "map-id": "ANY.300",
+                                "vlan-map-status": {
+                                    "active": true
+                                },
+                                "vlan-map-config": {
+                                    "vlan-id": 300
+                                }
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+}

@@ -1,0 +1,18 @@
+-------- mininet
+
+* basic startup
+
+sudo mn --topo tree,3 --mac --controller 'remote,ip="127.0.0.1",port=6633' --switch ovsk,protocols=OpenFlow13
+
+* dump flows from switch
+
+mn> xterm s1
+xterm -> root@ubuntu:~$ ovs-ofctl -O Openflow13 dump-flows s1
+
+
+
+-------- odl
+
+feature:install features-l2switch odl-mdsal-apidocs odl-restconf odl-restconf-all features-restconf features-dlux features-dluxapps odl-l2switch-all features-vtn-manager
+
+--------

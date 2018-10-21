@@ -1,0 +1,30 @@
+---- mininet bridge config
+** delete default address
+
+srvc1 ip addr del 10.0.0.6/8 dev srvc1-eth0
+
+** add bridge and interfaces, set bridge up and add delay on path
+
+srvc1 brctl addbr br0
+
+srvc1 brctl addif br0 srvc1-eth0
+
+srvc1 brctl addif br0 srvc1-eth1
+
+srvc1 ifconfig br0 up
+
+srvc1 tc qdisc add dev srvc1-eth1 root netem delay 200ms
+
+** repeat previous step for srvc2
+
+srvc2 ip addr del 10.0.0.7/8 dev srvc2-eth0
+
+srvc2 brctl addbr br0
+
+srvc2 brctl addif br0 srvc2-eth0
+
+srvc2 brctl addif br0 srvc2-eth1
+
+srvc2 ifconfig br0 up
+
+srvc2 tc qdisc add dev srvc2-eth1 root netem delay 300ms

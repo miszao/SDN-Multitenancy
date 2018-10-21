@@ -1,0 +1,35 @@
+-------- vtn l2 provisioning
+
+** Create Virtual Tenant
+
+curl --user "admin":"admin" -H "Content-type: application/json" -X POST http://localhost:8181/restconf/operations/vtn:update-vtn -d '{"input":{"tenant-name":"VTN_test"}}'
+
+** Create Virtual Bridge
+
+curl --user "admin":"admin" -H "Content-type: application/json" -X POST http://localhost:8181/restconf/operations/vtn-vbridge:update-vbridge -d '{"input":{"tenant-name":"VTN_test", "bridge-name":"VirtBr1"}}'
+
+** Create Virtual Bridge Interfaces
+
+* int1
+curl --user "admin":"admin" -H "Content-type: application/json" -X POST http://localhost:8181/restconf/operations/vtn-vinterface:update-vinterface -d '{"input":{"tenant-name":"VTN_test", "bridge-name":"VirtBr1", "interface-name":"int1"}}'
+
+* int2
+curl --user "admin":"admin" -H "Content-type: application/json" -X POST http://localhost:8181/restconf/operations/vtn-vinterface:update-vinterface -d '{"input":{"tenant-name":"VTN_test", "bridge-name":"VirtBr1", "interface-name":"int2"}}'
+
+** Create Interface Mappings
+
+* int1
+
+curl --user "admin":"admin" -H "Content-type: application/json" -X POST http://localhost:8181/restconf/operations/vtn-port-map:set-port-map -d '{"input":{"tenant-name":"VTN_test", "bridge-name":"VirtBr1", "interface-name":"int1", "node":"openflow:3", "port-name":"s3-eth1"}}'
+
+* int2
+
+curl --user "admin":"admin" -H "Content-type: application/json" -X POST http://localhost:8181/restconf/operations/vtn-port-map:set-port-map -d '{"input":{"tenant-name":"VTN_test", "bridge-name":"VirtBr1", "interface-name":"int2", "node":"openflow:7", "port-name":"s7-eth1"}}'
+
+* verify
+
+curl --user "admin":"admin" -H "Content-type: application/json" -X GET http://localhost:8181/restconf/operational/vtn:vtns/
+
+* cleanup
+
+curl --user "admin":"admin" -H "Content-type: application/json" -X POST http://localhost:8181/restconf/operations/vtn:remove-vtn -d '{"input":{"tenant-name":"VTN_test"}}'

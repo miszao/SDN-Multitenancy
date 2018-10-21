@@ -1,0 +1,22 @@
+---- VTN provisioning
+
+** Create Virtual Tenant
+
+curl --user "admin":"admin" -H "Content-type: application/json" -X POST http://localhost:8181/restconf/operations/vtn:update-vtn -d '{"input":{"tenant-name":"VTN_multi_vlan"}}'
+
+** Create Virtual Bridge 1
+
+curl --user "admin":"admin" -H "Content-type: application/json" -X POST http://localhost:8181/restconf/operations/vtn-vbridge:update-vbridge -d '{"input":{"tenant-name":"VTN_multi_vlan","bridge-name":"VirtBr1"}}'
+
+** Create a VLAN map with VLAN ID = 200 for Virtual Bridge 1
+
+curl --user "admin":"admin" -H "Content-type: application/json" -X POST http://localhost:8181/restconf/operations/vtn-vlan-map:add-vlan-map -d '{"input":{"vlan-id":200,"tenant-name":"VTN_multi_vlan","bridge-name":"VirtBr1"}}'
+
+** Create Virtual Bridge 2
+
+curl --user "admin":"admin" -H "Content-type: application/json" -X POST http://localhost:8181/restconf/operations/vtn-vbridge:update-vbridge -d '{"input":{"tenant-name":"VTN_multi_vlan","bridge-name":"VirtBr2"}}'
+
+Create a VLAN map with VLAN ID = 300 for Virtual Bridge 2
+
+curl --user "admin":"admin" -H "Content-type: application/json" -X POST http://localhost:8181/restconf/operations/vtn-vlan-map:add-vlan-map -d '{"input":{"vlan-id":300,"tenant-name":"VTN_multi_vlan","bridge-name":"VirtBr2"}}'
+

@@ -1,0 +1,5 @@
+wychodzi na to, ze switch s1/s2 (na zmiane) nie sa w stanie
+polaczyc sie z kontrollerem ponownie. Plan dzialania to zdefiniowac
+wlasny scenariusz, byc moze z uzyciem vlanow w celu zrealizowania 
+cwiczenia
+linked bug: https://jira.opendaylight.org/browse/OPNFLWPLUG-970
